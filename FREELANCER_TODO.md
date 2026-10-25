@@ -6,7 +6,7 @@
 - [x] استخراج و قفل بریف کارلنسر
 - [x] پیش‌نمایش کامل سایت RTL تم تیره (Next.js)
 - [x] صفحات خانه / درباره / نخبه‌ها / شرکت‌ها / اساتید / بینش‌ها / تماس
-- [x] CTA قفل: «اگر فکر می‌کنی می‌تونی متفاوت باشی با ما همراه شو» (هدر کوتاه: با ما همراه شو)
+- [x] CTA قفل: «اعلام آمادگی همکاری» (همان متن در هدر دسکتاپ و موبایل)
 - [x] فرم‌ها + اعتبارسنجی استثنای سنی + حالت‌های idle/loading/success/error
 - [x] مشخصات حقوقی ۹۷۷۶ / ۱۴۰۱۱۱۷۱۲۰۰ (بلاک مشترک درباره/تماس)
 - [x] CTA موبایل همیشه در هدر (نسخه کوتاه)
@@ -39,4 +39,4 @@
 - **GitHub `origin` (`Arafie3480/IAA`):** ریپوی تحویل — `git push origin main` یا Credential Manager / PAT با scope `repo`.
 - **Origin `proj-scope`:** ممکن است `403` بدهد؛ برای کارفرما لینک GitHub اولویت دارد.
 - راهنما: [`SYNC_LOCAL.md`](./SYNC_LOCAL.md)
-- شکاف‌های بسته‌شده در این ادامه: `opengraph-image` · `WEBZI_COPY` · `/site-b` · ۴۰۴/error/loading · manifest · JSON-LD · skip-link
+- شکاف‌های بسته‌شده در این ادامه: `opengraph-image` · `WEBZI_COPY` · `/site-b` · ۴۰۴/error/loading · manifest · JSON-LD · skip-link · عنوان خانه absolute · هم‌راستایی CTA در docs · `logo` در JSON-LD · `aria-invalid` روی select

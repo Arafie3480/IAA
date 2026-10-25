@@ -63,6 +63,7 @@ const jsonLd = {
       name: company.nameFa,
       alternateName: company.brand,
       url: `https://${company.domain}`,
+      logo: `https://${company.domain}/logo-iaa.svg`,
       email: company.email,
       address: company.address,
       identifier: [

@@ -239,6 +239,7 @@ export function ApplyForm({ kind }: ApplyFormProps) {
                 id={`${kind}-${field.name}`}
                 name={field.name}
                 required={field.required}
+                aria-invalid={Boolean(fieldErrors[field.name])}
                 className="flex h-11 w-full rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--fg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
                 defaultValue=""
               >

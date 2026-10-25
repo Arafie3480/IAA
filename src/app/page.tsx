@@ -7,12 +7,18 @@ import { insights } from "@/lib/insights";
 import { pageSeo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = pageSeo({
-  title: `${company.brand} | ${company.nameFa}`,
-  description:
-    "موسسه علمی ایده آرای آرسس — جذب نخبگان، همکاری با شرکت‌ها و هدایت تیم‌ها. شروع مسیر نخبگی.",
-  path: "/",
-});
+export const metadata: Metadata = {
+  ...pageSeo({
+    title: "خانه",
+    description:
+      "موسسه علمی ایده آرای آرسس — جذب نخبگان، همکاری با شرکت‌ها و هدایت تیم‌ها. شروع مسیر نخبگی.",
+    path: "/",
+  }),
+  // Avoid "%s | IAA" stacking on the root brand title.
+  title: {
+    absolute: `${company.brand} | ${company.nameFa}`,
+  },
+};
 
 const paths = [
   {
