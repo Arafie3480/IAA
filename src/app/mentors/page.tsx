@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { ApplyForm } from "@/components/forms/apply-form";
 import { PageHero } from "@/components/page-hero";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "اساتید",
   description: "اعلام آمادگی هدایت تیم‌ها در مسیر علمی IAA.",
-};
+  path: "/mentors",
+});
 
 export default function MentorsPage() {
   return (

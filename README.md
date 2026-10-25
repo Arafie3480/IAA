@@ -17,7 +17,7 @@ Dark-theme Next.js app for attracting elites, companies with scientific/tech pro
 | Route | Purpose |
 |-------|---------|
 | `/` | Hero, 3 audience paths, achievements, CTA |
-| `/about` | Company story, legal IDs, address |
+| `/about` | Company story, legal IDs, FAQ + JSON-LD |
 | `/elites` | Elite application form + process note |
 | `/companies` | Corporate collaboration form |
 | `/mentors` | Mentor / teacher form |
@@ -25,10 +25,13 @@ Dark-theme Next.js app for attracting elites, companies with scientific/tech pro
 | `/insights` | Sample articles (news/insights) |
 | `/insights/[slug]` | Article detail |
 | `/contact` | Address + IDs + contact form |
+| `/site-b` | Internal Site B placeholder (noindex) |
 
-Delivery tracker: [`DELIVERY_STATUS.md`](./DELIVERY_STATUS.md)
+SEO helpers: `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, Open Graph / Twitter images.
 
-See also [`DEPLOY_WEBZI.md`](./DEPLOY_WEBZI.md) for connecting Webzi + Host Iran + domain.
+Delivery tracker: [`DELIVERY_STATUS.md`](./DELIVERY_STATUS.md) · stages: [`STAGES.md`](./STAGES.md)  
+Webzi: [`DEPLOY_WEBZI.md`](./DEPLOY_WEBZI.md) · copy pack: [`content/WEBZI_COPY.md`](./content/WEBZI_COPY.md)  
+Karlancer reply: [`REPLY_TO_CLIENT.md`](./REPLY_TO_CLIENT.md)
 
 ## Run locally
 

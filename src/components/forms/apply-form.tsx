@@ -146,7 +146,7 @@ const fieldsByKind: Record<FormKind, Field[]> = {
 };
 
 const titles: Record<FormKind, string> = {
-  elite: company.cta,
+  elite: "ارسال اعلام آمادگی",
   company: "درخواست همکاری شرکتی",
   mentor: "اعلام آمادگی هدایت تیم",
   contact: "ارسال پیام",

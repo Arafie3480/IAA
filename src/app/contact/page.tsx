@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { ApplyForm } from "@/components/forms/apply-form";
 import { PageHero } from "@/components/page-hero";
 import { company } from "@/lib/company";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "تماس",
   description: `آدرس و اطلاعات حقوقی ${company.nameFa} — ${company.address}`,
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

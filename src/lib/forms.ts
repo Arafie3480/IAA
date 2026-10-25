@@ -150,9 +150,18 @@ export function validateForm(kind: FormKind, data: FormData): FormResult {
     };
   }
 
+  const successByKind: Record<FormKind, string> = {
+    elite:
+      "اعلام آمادگی دریافت شد. مسیر تا مصاحبه مدیرعامل پس از بررسی اولیه ادامه پیدا می‌کند.",
+    company:
+      "درخواست همکاری دریافت شد. در صورت تأیید، به متخصص مرتبط در شبکه IAA وصل می‌شوید.",
+    mentor: "اعلام آمادگی هدایت تیم دریافت شد. به‌زودی برای هماهنگی تماس می‌گیریم.",
+    contact: "پیام دریافت شد. در اسرع وقت پاسخ می‌دهیم.",
+  };
+
   return {
     ok: true,
-    message: "درخواست شما دریافت شد. به‌زودی با شما تماس می‌گیریم.",
+    message: successByKind[kind],
   };
 }
 

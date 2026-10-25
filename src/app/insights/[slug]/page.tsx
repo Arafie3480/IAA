@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { buttonVariants } from "@/components/ui/button";
 import { company } from "@/lib/company";
 import { getInsight, insights } from "@/lib/insights";
+import { pageSeo } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -15,7 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const item = getInsight(slug);
   if (!item) return { title: "یافت نشد" };
-  return { title: item.title, description: item.excerpt };
+  return pageSeo({
+    title: item.title,
+    description: item.excerpt,
+    path: `/insights/${item.slug}`,
+    ogType: "article",
+  });
 }
 
 export default async function InsightArticlePage({ params }: Props) {

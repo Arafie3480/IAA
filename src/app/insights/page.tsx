@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { insights } from "@/lib/insights";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "بینش‌ها و اخبار",
   description: "مقالات نمونه درباره مسیر نخبگی، علم کاربردی و هدایت تیم‌ها در IAA.",
-};
+  path: "/insights",
+});
 
 export default function InsightsPage() {
   return (

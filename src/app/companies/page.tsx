@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { ApplyForm } from "@/components/forms/apply-form";
 import { PageHero } from "@/components/page-hero";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "شرکت‌ها",
   description:
     "سپردن مسئله علمی یا فنی به شبکه متخصصان IAA — فرم همکاری شرکتی.",
-};
+  path: "/companies",
+});
 
 export default function CompaniesPage() {
   return (

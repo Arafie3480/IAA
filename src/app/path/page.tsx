@@ -4,12 +4,14 @@ import { ArrowLeft } from "lucide-react";
 import { PageHero } from "@/components/page-hero";
 import { buttonVariants } from "@/components/ui/button";
 import { company, eliteProcess } from "@/lib/company";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "مسیر همکاری",
   description:
     "از اعلام آمادگی تا مصاحبه مدیرعامل — مسیر شفاف پیوستن به شبکه IAA.",
-};
+  path: "/path",
+});
 
 export default function PathPage() {
   return (

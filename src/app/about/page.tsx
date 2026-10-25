@@ -11,6 +11,25 @@ export const metadata: Metadata = pageSeo({
   path: "/about",
 });
 
+const faqs = [
+  {
+    q: "آیا معدل یا مدرک رسمی برای پیوستن الزامی است؟",
+    a: "خیر. معیار اصلی توانمندی واقعی و ظرفیت ایجاد تغییر است؛ معدل درخشان یا مدرک رسمی شرط ورود نیست.",
+  },
+  {
+    q: "بازه سنی چقدر است؟",
+    a: `بازه اصلی ${company.ageRange} است. خارج از این بازه با تیک استثنا و توضیح انگیزه بررسی می‌شود.`,
+  },
+  {
+    q: "بعد از اعلام آمادگی چه می‌شود؟",
+    a: "بررسی اولیه، دسته‌بندی توانمندی، همراهی آموزشی، سپس در صورت تأیید مصاحبه حضوری با مدیرعامل.",
+  },
+  {
+    q: "سایت دوم قرارداد کی شروع می‌شود؟",
+    a: "پس از بستن تحویل سایت اول روی دامنه؛ موضوع و بریف سایت دوم را کارفرما مشخص می‌کند.",
+  },
+] as const;
+
 export default function AboutPage() {
   return (
     <>
@@ -81,6 +100,36 @@ export default function AboutPage() {
             </ul>
           </div>
         </div>
+
+        <section className="mt-14 border-t border-[var(--border)] pt-14">
+          <h2 className="font-display text-2xl font-bold tracking-tight">
+            پرسش‌های پرتکرار
+          </h2>
+          <dl className="mt-8 max-w-3xl space-y-8">
+            {faqs.map((faq) => (
+              <div key={faq.q}>
+                <dt className="font-semibold text-[var(--fg)]">{faq.q}</dt>
+                <dd className="mt-2 text-sm leading-7 text-[var(--fg-muted)]">
+                  {faq.a}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: faqs.map((faq) => ({
+                  "@type": "Question",
+                  name: faq.q,
+                  acceptedAnswer: { "@type": "Answer", text: faq.a },
+                })),
+              }),
+            }}
+          />
+        </section>
 
         <div className="mt-14 flex flex-wrap gap-3">
           <Link href="/elites" className={buttonVariants({ size: "lg" })}>

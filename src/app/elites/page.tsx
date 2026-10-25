@@ -3,11 +3,13 @@ import Link from "next/link";
 import { ApplyForm } from "@/components/forms/apply-form";
 import { PageHero } from "@/components/page-hero";
 import { company, eliteProcess } from "@/lib/company";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "نخبه‌ها",
   description: `${company.cta} — جامعه نخبگان IAA؛ بازه سنی ${company.ageRange} با امکان استثنا.`,
-};
+  path: "/elites",
+});
 
 export default function ElitesPage() {
   return (

@@ -31,7 +31,7 @@ Full walkthrough script: [`CLIENT_DEMO.md`](./CLIENT_DEMO.md)
 | Site B: questions + plan + `/site-b` noindex placeholder (no invented product) | ✅ |
 | Karlancer reply draft | ✅ `REPLY_TO_CLIENT.md` |
 
-**Site A freelancerside readiness: ~92%** (remaining % is client assets + Webzi deploy + real SMTP).
+**Site A freelancerside readiness: ~95%** (remaining % is client assets + Webzi deploy + real SMTP).
 
 ---
 
