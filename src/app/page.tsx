@@ -1,9 +1,18 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Building2, GraduationCap, Sparkles } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { achievements, company } from "@/lib/company";
 import { insights } from "@/lib/insights";
+import { pageSeo } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+
+export const metadata: Metadata = pageSeo({
+  title: `${company.brand} | ${company.nameFa}`,
+  description:
+    "موسسه علمی ایده آرای آرسس — جذب نخبگان، همکاری با شرکت‌ها و هدایت تیم‌ها. شروع مسیر نخبگی.",
+  path: "/",
+});
 
 const paths = [
   {

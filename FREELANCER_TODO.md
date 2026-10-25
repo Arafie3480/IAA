@@ -35,9 +35,8 @@
 2. بعد از لوگو/ایمیل: ورود وبزی، تعویض رمز، نصب ویدا، پیست کپی از `content/`
 3. راهنمایی DNS طبق `DEPLOY_WEBZI.md`
 
-## آن‌بلاک انتشار (push) — به‌روز ۱۴۰۴/۰۸
-- **origin (Cursor Origin):** `403` — دسترسی به `amir-hossein-z42bm/proj-scope` نیست؛ remote را حذف نکنید.
-- **github (`Arafie3480/IAA`):** Github MCP write اکنون کار می‌کند (`push_files` / `create_or_update_file` به‌عنوان `Arafie3480`). `git push github` از شل هنوز بدون PAT شکست می‌خورد.
-  - درخت کامل در حال sync از طریق MCP؛ در صورت ناقص بودن: از ویندوز طبق `SYNC_LOCAL.md` یا `GITHUB_TOKEN` با scope `repo`.
-- لینک GitHub را بعد از تأیید فایل‌های اصلی در ریپو بفرستید.
-- کامیت محلی: `cursor/iaa-freelancerside-ship-0159`
+## آن‌بلاک انتشار (push) — به‌روز ادامه محلی bc-e7fe436a
+- **GitHub `origin` (`Arafie3480/IAA`):** ریپوی تحویل — `git push origin main` یا Credential Manager / PAT با scope `repo`.
+- **Origin `proj-scope`:** ممکن است `403` بدهد؛ برای کارفرما لینک GitHub اولویت دارد.
+- راهنما: [`SYNC_LOCAL.md`](./SYNC_LOCAL.md)
+- شکاف‌های بسته‌شده در این ادامه: `opengraph-image` · `WEBZI_COPY` · `/site-b` · ۴۰۴/error/loading · manifest · JSON-LD · skip-link

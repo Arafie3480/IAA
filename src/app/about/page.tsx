@@ -3,11 +3,13 @@ import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { buttonVariants } from "@/components/ui/button";
 import { achievements, company } from "@/lib/company";
+import { pageSeo } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageSeo({
   title: "درباره IAA",
   description: `داستان و هویت حقوقی ${company.nameFa} — ${company.brand}`,
-};
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (
