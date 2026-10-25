@@ -8,11 +8,8 @@ export const company = {
   nationalId: "۱۴۰۱۱۱۷۱۲۰۰",
   address:
     "شهرک صنعتی بهارستان، پارک علم و فناوری البرز، شرکت ایده آرای آرسس",
-  // کلید اصلی طبق پیام کارفرما (۱۸:۱۱)
-  cta: "اگر فکر می‌کنی می‌تونی متفاوت باشی با ما همراه شو",
-  /** نسخه کوتاه برای هدر موبایل / دکمه‌های فشرده */
-  ctaShort: "با ما همراه شو",
-  ctaSub: "اعلام آمادگی همکاری · شروع مسیر نخبگی",
+  cta: "اعلام آمادگی همکاری",
+  ctaSub: "شروع مسیر نخبگی",
   ageRange: "۱۰ تا ۳۵ سال",
 } as const;
 
@@ -22,6 +19,7 @@ export const nav = [
   { href: "/elites", label: "نخبه‌ها" },
   { href: "/companies", label: "شرکت‌ها" },
   { href: "/mentors", label: "اساتید" },
+  { href: "/path", label: "مسیر همکاری" },
   { href: "/insights", label: "بینش‌ها" },
   { href: "/contact", label: "تماس" },
 ] as const;

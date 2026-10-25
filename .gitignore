@@ -42,7 +42,3 @@ next-env.d.ts
 
 # Next.js auto-generated agent rules
 /AGENTS.md
-
-# Local helper patches
-/pending-push.patch
-*.patch
