@@ -30,7 +30,7 @@
 | قالب ویدا + Elementor RTL | ⏳ |
 | DNS `iaafuture.com` + SSL | ⏳ |
 | SMTP واقعی فرم‌ها | ⏳ ایمیل مقصد تأیید نشده |
-| لوگو نهایی | ⏳ کارفرما نفرستاده |
+| لوگو نهایی | ⏳ کارفرما نفرستاده — فعلاً `public/logo-iaa.svg` موقت |
 
 جزئیات: [`DEPLOY_WEBZI.md`](./DEPLOY_WEBZI.md)
 
