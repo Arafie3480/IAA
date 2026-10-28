@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 
 export default function Error({
@@ -27,9 +28,9 @@ export default function Error({
         <button type="button" onClick={reset} className={buttonVariants({ size: "lg" })}>
           تلاش مجدد
         </button>
-        <a href="/" className={buttonVariants({ variant: "outline", size: "lg" })}>
+        <Link href="/" className={buttonVariants({ variant: "outline", size: "lg" })}>
           خانه
-        </a>
+        </Link>
       </div>
     </section>
   );

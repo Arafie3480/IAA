@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,7 +17,6 @@ type Field = {
     | "tel"
     | "number"
     | "textarea"
-    | "file"
     | "select"
     | "checkbox";
   placeholder?: string;
@@ -70,12 +69,6 @@ const fieldsByKind: Record<FormKind, Field[]> = {
     },
     { name: "phone", label: "تلفن", type: "tel", required: true },
     { name: "email", label: "ایمیل", type: "email", required: true },
-    {
-      name: "resume",
-      label: "رزومه (اختیاری)",
-      type: "file",
-      hint: "در این نمونه، فایل فقط برای نمایش فیلد است و آپلود واقعی انجام نمی‌شود.",
-    },
   ],
   company: [
     {
@@ -157,6 +150,7 @@ type ApplyFormProps = {
 };
 
 export function ApplyForm({ kind }: ApplyFormProps) {
+  const submitting = useRef(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">(
     "idle",
   );
@@ -165,6 +159,8 @@ export function ApplyForm({ kind }: ApplyFormProps) {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting.current) return;
+    submitting.current = true;
     setStatus("loading");
     setMessage("");
     setFieldErrors({});
@@ -181,21 +177,29 @@ export function ApplyForm({ kind }: ApplyFormProps) {
         ok: boolean;
         message: string;
         fieldErrors?: Record<string, string>;
+        delivery?: "preview";
       };
 
       if (!res.ok || !json.ok) {
         setStatus("error");
         setMessage(json.message || "ارسال ناموفق بود.");
         setFieldErrors(json.fieldErrors ?? {});
+        const firstInvalidField = Object.keys(json.fieldErrors ?? {})[0];
+        if (firstInvalidField) {
+          const input = form.elements.namedItem(firstInvalidField);
+          if (input instanceof HTMLElement) input.focus();
+        }
         return;
       }
 
       setStatus("success");
       setMessage(json.message);
-      form.reset();
+      if (json.delivery !== "preview") form.reset();
     } catch {
       setStatus("error");
       setMessage("خطای شبکه. دوباره تلاش کنید.");
+    } finally {
+      submitting.current = false;
     }
   }
 
@@ -203,7 +207,14 @@ export function ApplyForm({ kind }: ApplyFormProps) {
 
   return (
     <div className="w-full max-w-2xl">
-      <form onSubmit={onSubmit} className="space-y-5" noValidate>
+      <p id={`${kind}-preview`} className="mb-6 rounded-md border border-[var(--border)] bg-[var(--gold-soft)] px-4 py-3 text-sm text-[var(--fg-muted)]">
+        فرم پیش‌نمایش است و اطلاعات را ذخیره یا ایمیل نمی‌کند. برای ارسال درخواست یا رزومه، به{" "}
+        <a href={`mailto:${company.email}`} className="text-[var(--accent)] underline" dir="ltr">
+          {company.email}
+        </a>{" "}
+        ایمیل بزنید.
+      </p>
+      <form onSubmit={onSubmit} className="space-y-5" aria-busy={status === "loading"} aria-describedby={`${kind}-preview`} noValidate>
         {fields.map((field) => (
           <div key={field.name}>
             {field.type !== "checkbox" ? (
@@ -223,6 +234,7 @@ export function ApplyForm({ kind }: ApplyFormProps) {
                   type="checkbox"
                   className="mt-1 size-4 accent-[var(--accent)]"
                   aria-invalid={Boolean(fieldErrors[field.name])}
+                  aria-describedby={`${kind}-${field.name}-help`}
                 />
                 <span>{field.label}</span>
               </label>
@@ -233,6 +245,7 @@ export function ApplyForm({ kind }: ApplyFormProps) {
                 placeholder={field.placeholder}
                 required={field.required}
                 aria-invalid={Boolean(fieldErrors[field.name])}
+                aria-describedby={`${kind}-${field.name}-help`}
               />
             ) : field.type === "select" ? (
               <select
@@ -240,6 +253,7 @@ export function ApplyForm({ kind }: ApplyFormProps) {
                 name={field.name}
                 required={field.required}
                 aria-invalid={Boolean(fieldErrors[field.name])}
+                aria-describedby={`${kind}-${field.name}-help`}
                 className="flex h-11 w-full rounded-md border border-[var(--border)] bg-[var(--surface)] px-3 text-sm text-[var(--fg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)]"
                 defaultValue=""
               >
@@ -252,13 +266,6 @@ export function ApplyForm({ kind }: ApplyFormProps) {
                   </option>
                 ))}
               </select>
-            ) : field.type === "file" ? (
-              <Input
-                id={`${kind}-${field.name}`}
-                name={field.name}
-                type="file"
-                accept=".pdf,.doc,.docx"
-              />
             ) : (
               <Input
                 id={`${kind}-${field.name}`}
@@ -267,17 +274,23 @@ export function ApplyForm({ kind }: ApplyFormProps) {
                 placeholder={field.placeholder}
                 required={field.required}
                 aria-invalid={Boolean(fieldErrors[field.name])}
+                aria-describedby={`${kind}-${field.name}-help`}
+                min={field.name === "age" ? 5 : undefined}
+                max={field.name === "age" ? 90 : undefined}
+                step={field.name === "age" ? 1 : undefined}
               />
             )}
 
-            {field.hint ? (
-              <p className="mt-1.5 text-xs text-[var(--fg-muted)]">{field.hint}</p>
-            ) : null}
-            {fieldErrors[field.name] ? (
-              <p className="mt-1.5 text-xs text-[var(--danger)]" role="alert">
-                {fieldErrors[field.name]}
-              </p>
-            ) : null}
+            <div id={`${kind}-${field.name}-help`}>
+              {field.hint ? (
+                <p className="mt-1.5 text-xs text-[var(--fg-muted)]">{field.hint}</p>
+              ) : null}
+              {fieldErrors[field.name] ? (
+                <p className="mt-1.5 text-xs text-[var(--danger)]" role="alert">
+                  {fieldErrors[field.name]}
+                </p>
+              ) : null}
+            </div>
           </div>
         ))}
 

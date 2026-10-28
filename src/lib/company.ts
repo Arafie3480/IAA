@@ -1,9 +1,9 @@
 export const company = {
   nameFa: "ایده آرای آرسس",
   brand: "IAA",
-  brandFull: "IAA Company",
+  brandFull: "IAA future",
   domain: "iaafuture.com",
-  email: "info@iaafuture.com",
+  email: "ljannesar9140@gmail.com",
   registrationNo: "۹۷۷۶",
   nationalId: "۱۴۰۱۱۱۷۱۲۰۰",
   address:
