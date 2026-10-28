@@ -2,11 +2,11 @@
 
 ## آخرین وضعیت — ۲۹ اکتبر ۲۰۲۶
 
-**سایت ۱ (IAA) روی استیجینگ وبزی آمادهٔ بازبینی و پذیرش است.**
+**سایت ۱ (IAA): کار سمت فریلنسر روی استیجینگ بسته شد — آمادهٔ بازبینی و پذیرش کارفرما.**
 
 Staging: https://6adb33304ae68.mywebzi.ir/
 
-جزئیات فنی: [`DELIVERY_STATUS.md`](./DELIVERY_STATUS.md) · [`WEBZI_NOW.md`](./WEBZI_NOW.md)
+جزئیات فنی: [`DELIVERY_STATUS.md`](./DELIVERY_STATUS.md) · [`WEBZI_NOW.md`](./WEBZI_NOW.md) · فروشگاه: [`content/SITE_B_QUESTIONS.md`](./content/SITE_B_QUESTIONS.md)
 
 ---
 
