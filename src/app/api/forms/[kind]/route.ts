@@ -1,12 +1,10 @@
 import { NextResponse } from "next/server";
 import {
-  formDataToObject,
   validateForm,
   type FormKind,
 } from "@/lib/forms";
 
 const allowed: FormKind[] = ["elite", "company", "mentor", "contact"];
-
 export async function POST(
   request: Request,
   context: { params: Promise<{ kind: string }> },
@@ -36,14 +34,9 @@ export async function POST(
     return NextResponse.json(result, { status: 400 });
   }
 
-  const payload = formDataToObject(data);
-  // Mock email delivery for the prototype — no SMTP secrets required.
-  console.info("[IAA form mock email]", {
-    kind,
-    to: "info@iaafuture.com",
-    payload,
-    at: new Date().toISOString(),
+  return NextResponse.json({
+    ok: true,
+    delivery: "preview",
+    message: "اطلاعات فرم معتبر است. این پیش‌نمایش است؛ درخواست ذخیره یا ایمیل نشده است. برای ارسال واقعی از ایمیل تماس استفاده کنید.",
   });
-
-  return NextResponse.json(result);
 }

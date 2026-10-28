@@ -29,13 +29,11 @@ export function SiteHeader() {
           href="/"
           className="flex items-center gap-2.5"
           onClick={() => setOpen(false)}
+          aria-label={`${company.brandFull} — ${company.nameFa}`}
         >
-          <BrandMark className="size-9 text-[var(--fg)]" />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-lg font-bold tracking-tight text-[var(--fg)]">
-              {company.brand}
-            </span>
-            <span className="mt-1 hidden text-[10px] text-[var(--fg-muted)] sm:inline">
+          <BrandMark className="h-10 w-auto max-w-[9.5rem] sm:h-11 sm:max-w-[11rem]" />
+          <span className="hidden flex-col leading-none sm:flex">
+            <span className="text-[10px] text-[var(--fg-muted)]">
               {company.nameFa}
             </span>
           </span>

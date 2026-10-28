@@ -5,7 +5,7 @@ export type FormResult =
   | { ok: false; message: string; fieldErrors?: Record<string, string> };
 
 function required(value: FormDataEntryValue | null, label: string) {
-  const v = String(value ?? "").trim();
+  const v = typeof value === "string" ? value.trim() : "";
   if (!v) return { error: `${label} الزامی است.`, value: "" };
   return { error: null as string | null, value: v };
 }
@@ -17,9 +17,18 @@ function email(value: string) {
   return null;
 }
 
+function normalizeDigits(value: string) {
+  return value
+    .replace(/[۰-۹]/g, (digit) => String(digit.charCodeAt(0) - 0x06f0))
+    .replace(/[٠-٩]/g, (digit) => String(digit.charCodeAt(0) - 0x0660));
+}
+
 function phone(value: string) {
-  const digits = value.replace(/[^\d۰-۹]/g, "");
-  if (digits.length < 8) return "شماره تماس معتبر نیست.";
+  const normalized = normalizeDigits(value);
+  const digits = normalized.replace(/\D/g, "");
+  if (!/^\+?[\d\s()-]+$/.test(normalized) || digits.length < 8 || digits.length > 15) {
+    return "شماره تماس معتبر نیست.";
+  }
   return null;
 }
 
@@ -30,9 +39,10 @@ export function validateForm(kind: FormKind, data: FormData): FormResult {
     const fullName = required(data.get("fullName"), "نام و نام خانوادگی");
     if (fullName.error) fieldErrors.fullName = fullName.error;
 
-    const ageRaw = String(data.get("age") ?? "").trim();
+    const ageValue = data.get("age");
+    const ageRaw = typeof ageValue === "string" ? normalizeDigits(ageValue.trim()) : "";
     const age = Number(ageRaw);
-    if (!ageRaw || Number.isNaN(age) || age < 5 || age > 90) {
+    if (!/^\d+$/.test(ageRaw) || !Number.isInteger(age) || age < 5 || age > 90) {
       fieldErrors.age = "سن معتبر الزامی است.";
     } else if ((age < 10 || age > 35) && data.get("ageException") !== "on") {
       fieldErrors.ageException =
@@ -77,6 +87,9 @@ export function validateForm(kind: FormKind, data: FormData): FormResult {
   if (kind === "company") {
     const entityType = required(data.get("entityType"), "نوع شخصیت");
     if (entityType.error) fieldErrors.entityType = entityType.error;
+    else if (!["حقوقی", "حقیقی"].includes(entityType.value)) {
+      fieldErrors.entityType = "نوع شخصیت معتبر نیست.";
+    }
 
     const intro = required(data.get("intro"), "معرفی");
     if (intro.error) fieldErrors.intro = intro.error;
@@ -134,6 +147,12 @@ export function validateForm(kind: FormKind, data: FormData): FormResult {
     const message = required(data.get("message"), "پیام");
     if (message.error) fieldErrors.message = message.error;
 
+    const phoneValue = data.get("phone");
+    if (phoneValue !== null && (typeof phoneValue !== "string" || phoneValue.trim())) {
+      const phoneError = typeof phoneValue === "string" ? phone(phoneValue.trim()) : "شماره تماس معتبر نیست.";
+      if (phoneError) fieldErrors.phone = phoneError;
+    }
+
     const emailVal = required(data.get("email"), "ایمیل");
     if (emailVal.error) fieldErrors.email = emailVal.error;
     else {
@@ -163,13 +182,4 @@ export function validateForm(kind: FormKind, data: FormData): FormResult {
     ok: true,
     message: successByKind[kind],
   };
-}
-
-export function formDataToObject(data: FormData) {
-  const out: Record<string, string> = {};
-  data.forEach((value, key) => {
-    if (typeof value === "string") out[key] = value;
-    else out[key] = value.name;
-  });
-  return out;
 }
