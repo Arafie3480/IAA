@@ -16,7 +16,7 @@ export const company = {
 export const nav = [
   { href: "/", label: "خانه" },
   { href: "/about", label: "درباره IAA" },
-  { href: "/elites", label: "نخبه‌ها" },
+  { href: "/elites", label: "نخبگان" },
   { href: "/companies", label: "شرکت‌ها" },
   { href: "/mentors", label: "اساتید" },
   { href: "/path", label: "مسیر همکاری" },

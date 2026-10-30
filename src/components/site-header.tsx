@@ -58,7 +58,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden md:block">
-          <Link href="/elites" className={buttonVariants({ size: "sm" })}>
+          <Link href="/path" className={buttonVariants({ size: "sm" })}>
             {company.cta}
           </Link>
         </div>
@@ -93,7 +93,7 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              href="/elites"
+              href="/path"
               onClick={() => setOpen(false)}
               className={cn(buttonVariants({ size: "default" }), "mt-2 w-full")}
             >

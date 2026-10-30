@@ -24,23 +24,23 @@ const paths = [
   {
     href: "/elites",
     icon: Sparkles,
-    title: "نخبه‌ها",
-    text: "اگر می‌توانید تغییر ایجاد کنید — حتی بدون معدل درخشان یا مدرک رسمی — خودتان را معرفی کنید.",
-    priority: "اولویت اول",
+    title: "نخبگان",
+    text: "اگر توانایی ایجاد تغییر داری، خودت را معرفی کن.",
+    priority: "مسیر اول",
   },
   {
     href: "/companies",
     icon: Building2,
     title: "شرکت‌ها",
-    text: "مسئله علمی یا فنی دارید؟ آن را بسپارید تا به متخصص شبکه IAA وصل شوید.",
-    priority: "اولویت دوم",
+    text: "مسئله علمی یا فنی دارید؟ بفرستید تا به شبکه وصل شوید.",
+    priority: "مسیر دوم",
   },
   {
     href: "/mentors",
     icon: GraduationCap,
     title: "اساتید",
-    text: "مهارت و تجربه خود را برای هدایت تیم‌های توانمند در اختیار مسیر IAA بگذارید.",
-    priority: "اولویت سوم",
+    text: "تجربه خود را برای هدایت تیم‌ها اعلام کنید.",
+    priority: "مسیر سوم",
   },
 ] as const;
 
@@ -63,20 +63,20 @@ export default function HomePage() {
 
         <div className="relative mx-auto flex min-h-[calc(100vh-4rem)] max-w-6xl flex-col justify-center px-4 py-16 sm:px-6">
           <p className="font-display text-6xl font-bold tracking-tight text-[var(--fg)] sm:text-8xl animate-fade-up">
-            {company.brand}
+            {company.brandFull}
           </p>
           <p className="mt-3 text-lg text-[var(--gold)] sm:text-xl animate-fade-up-delay">
             {company.nameFa}
           </p>
-          <h1 className="mt-8 max-w-2xl text-2xl font-medium leading-relaxed text-[var(--fg)] sm:text-3xl animate-fade-up-delay">
-            جایی که توانمندی واقعی دیده می‌شود — نه فقط مدرک.
-          </h1>
+          <p className="mt-8 max-w-2xl text-2xl font-medium leading-relaxed text-[var(--fg)] sm:text-3xl animate-fade-up-delay">
+            ما توانمندی‌های شما را می‌بینیم.
+          </p>
           <p className="mt-4 max-w-xl text-base leading-8 text-[var(--fg-muted)] animate-fade-up-delay-2">
-            {company.ctaSub}. موسسه علمی برای جذب افراد توانمند، حل مسئله‌های
-            شرکت‌ها و هدایت تیم‌ها با اعتبار علمی.
+            ما تیم بزرگی از بهترین افراد تشکیل دادیم. اگر توانایی ایجاد تغییر
+            داری، مسیر خودت را انتخاب کن.
           </p>
           <div className="mt-10 flex flex-wrap items-center gap-3 animate-fade-up-delay-2">
-            <Link href="/elites" className={buttonVariants({ size: "lg" })}>
+            <Link href="/path" className={buttonVariants({ size: "lg" })}>
               {company.cta}
               <ArrowLeft className="size-4" />
             </Link>
@@ -92,11 +92,14 @@ export default function HomePage() {
 
       <section className="border-t border-[var(--border)]">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-          <h2 className="font-display text-2xl font-bold tracking-tight sm:text-3xl">
-            سه مسیر ورود
+          <h2
+            id="paths"
+            className="font-display text-2xl font-bold tracking-tight sm:text-3xl"
+          >
+            نخبگان · شرکت‌ها · اساتید
           </h2>
           <p className="mt-3 max-w-2xl text-[var(--fg-muted)]">
-            مخاطب اصلی ما نخبه‌ها هستند؛ شرکت‌ها و اساتید مسیرهای مکمل همکاری‌اند.
+            یکی از سه مسیر را انتخاب کنید و فرم همان مسیر را پر کنید.
           </p>
           <div className="mt-10 grid gap-8 md:grid-cols-3">
             {paths.map((path) => (
@@ -213,7 +216,7 @@ export default function HomePage() {
               اولین گام، اعلام آمادگی همکاری است — نه عضویت معمولی.
             </p>
           </div>
-          <Link href="/elites" className={buttonVariants({ size: "lg" })}>
+          <Link href="/path" className={buttonVariants({ size: "lg" })}>
             {company.cta}
             <ArrowLeft className="size-4" />
           </Link>

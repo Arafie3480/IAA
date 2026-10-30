@@ -104,6 +104,7 @@ for (const path of [
   "/opengraph-image",
   "/twitter-image",
   "/logo-iaa.png",
+  "/logo-iaa-transparent.png",
   "/favicon.ico",
 ]) {
   test(`asset ${path}: available`, async () =>

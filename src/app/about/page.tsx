@@ -46,6 +46,9 @@ export default function AboutPage() {
             ({company.nameFa}) حضور آنلاینی می‌سازد برای جذب افراد توانمند، حل
             مسئله‌های علمی و فنی شرکت‌ها، و هدایت تیم‌ها با اعتبار علمی.
           </p>
+          <p className="rounded-md border border-dashed border-[var(--border)] bg-[var(--surface)] px-4 py-3 text-sm text-[var(--fg-muted)]">
+            متن تکمیلی این بخش را کارفرما می‌فرستد.
+          </p>
           <p>
             هدف ما فروش مستقیم نیست؛ هدف ساخت مسیری شفاف برای همکاری با کسانی
             است که می‌توانند تغییر ایجاد کنند — حتی اگر معدل درخشان یا مدرک
